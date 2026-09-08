@@ -2,6 +2,7 @@ name: GarnetMatrix
 version: 1.0.0
 main: me.mbiancini.garnetmatrix.GarnetMatrixPlugin
 description: You entred in the Matrix created by Garnet, will you be able to survive?
-author: PaperMC
+author: DrGarnet14
 website: https://mattiabiancini.vercel.app/
 api-version: '26.2'
+prefix: GM
