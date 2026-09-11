@@ -1,0 +1,66 @@
+name: Release on version bump
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/main/resources/plugin.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "26"
+
+      - name: Extract version from plugin.yml
+        id: version
+        run: |
+          VERSION=$(grep -E '^version:' src/main/resources/plugin.yml | sed -E 's/version:[[:space:]]*//' | tr -d '"'"'"'"' | xargs)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Detected version: $VERSION"
+
+      - name: Check if tag already exists
+        id: tagcheck
+        run: |
+          if git rev-parse "v${{ steps.version.outputs.version }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Grant execute permission for gradlew
+        if: steps.tagcheck.outputs.exists == 'false'
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        if: steps.tagcheck.outputs.exists == 'false'
+        run: ./gradlew build --no-daemon
+
+      - name: Locate built jar
+        if: steps.tagcheck.outputs.exists == 'false'
+        id: jar
+        run: |
+          JAR_PATH=$(find build/libs -name "*.jar" ! -name "*-sources.jar" ! -name "*-javadoc.jar" | head -n 1)
+          echo "path=$JAR_PATH" >> "$GITHUB_OUTPUT"
+          echo "Found jar: $JAR_PATH"
+
+      - name: Create GitHub Release
+        if: steps.tagcheck.outputs.exists == 'false'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: v${{ steps.version.outputs.version }}
+          generate_release_notes: true
+          files: ${{ steps.jar.outputs.path }}
