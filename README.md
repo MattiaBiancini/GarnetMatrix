@@ -1,6 +1,18 @@
 # GarnetMatrix
 
-![GarnetMatrix Banner](./imgs/GarnetMatrix.png)
+<div align="center">
+<img src="./imgs/GarnetMatrix.png" alt="GarnetMatrix Banner" width="256" />
+ 
+![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)
+![Paper](https://img.shields.io/badge/Paper-26.x-blue?style=for-the-badge&logo=papermc)
+![License](https://img.shields.io/badge/license-MIT-yellow?style=for-the-badge)
+ 
+**Adds two rare, tool-and-block-locked custom enchantments: Vein Miner and Tree Capitator.**
+ 
+[![Release](https://img.shields.io/github/v/release/MattiaBiancini/GarnetMatrix?style=for-the-badge&label=Download)](https://github.com/MattiaBiancini/GarnetMatrix/releases)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20Me-FF5E5B?style=for-the-badge&logo=ko-fi)](https://ko-fi.com/garnet14)
+ 
+</div>
 
 GarnetMatrix is a lightweight Minecraft plugin that adds two powerful, rare custom enchantments to the game: **Vein Miner** and **Tree Capitator**. Both are designed to feel like a natural extension of vanilla enchanting rather than an overpowered shortcut — they're hard to get, and each one only works with the tool and block type it was built for.
 
@@ -47,7 +59,3 @@ There is no `/enchant` command support by default, and the enchantments cannot b
 
 - Requires a recent Paper server build (see Releases for tested versions).
 - No dependency on other plugins.
-
-## License
-
-Specify your license here (e.g. MIT, GPL-3.0).
