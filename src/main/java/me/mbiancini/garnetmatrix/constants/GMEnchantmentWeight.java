@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum EnchantmentWeight {
+public enum GMEnchantmentWeight {
 
 	COMMON(10),
 	UNCOMMON(5),

@@ -1,7 +1,6 @@
 package me.mbiancini.garnetmatrix.utils;
 
 import me.mbiancini.garnetmatrix.GarnetMatrixPlugin;
-import me.mbiancini.garnetmatrix.constants.GarnetMatrixColorTheme;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

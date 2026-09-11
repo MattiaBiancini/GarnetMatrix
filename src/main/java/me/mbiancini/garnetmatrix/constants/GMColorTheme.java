@@ -2,7 +2,7 @@ package me.mbiancini.garnetmatrix.constants;
 
 import net.kyori.adventure.text.format.TextColor;
 
-public class GarnetMatrixColorTheme {
+public class GMColorTheme {
 
 	public static final TextColor GRAY = TextColor.color(0x34495E);
 	public static final TextColor RED = TextColor.color(0xDB5042);

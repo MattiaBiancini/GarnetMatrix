@@ -4,8 +4,8 @@ import io.papermc.paper.registry.RegistryAccess;
 import io.papermc.paper.registry.RegistryKey;
 import io.papermc.paper.registry.data.EnchantmentRegistryEntry;
 import io.papermc.paper.registry.keys.tags.ItemTypeTagKeys;
-import me.mbiancini.garnetmatrix.constants.EnchantmentWeight;
-import me.mbiancini.garnetmatrix.constants.GarnetMatrixColorTheme;
+import me.mbiancini.garnetmatrix.constants.GMEnchantmentWeight;
+import me.mbiancini.garnetmatrix.constants.GMColorTheme;
 import me.mbiancini.garnetmatrix.constants.GarnetMatrixKeys;
 import me.mbiancini.garnetmatrix.registries.enchantments.GMEnchant;
 import me.mbiancini.garnetmatrix.utils.GMLogger;
@@ -37,7 +37,7 @@ public class GMTreeCapitator extends GMEnchant {
 			EquipmentSlotGroup.MAINHAND,
 			1,
 			1,
-			EnchantmentWeight.UNCOMMON,
+			GMEnchantmentWeight.UNCOMMON,
 			true,
 			true
 		);
@@ -52,9 +52,9 @@ public class GMTreeCapitator extends GMEnchant {
 
 		if(treecapitatorEnchantment == null) {
 			_logger.sendAdminMessage(new TextComponentBuilder()
-				.append(GarnetMatrixColorTheme.RED, "Impossible to find the enchantment: ")
-				.append(GarnetMatrixColorTheme.ACCENT_RED, this.getEnchantKey())
-				.append(GarnetMatrixColorTheme.RED, ".")
+				.append(GMColorTheme.RED, "Impossible to find the enchantment: ")
+				.append(GMColorTheme.ACCENT_RED, this.getEnchantKey())
+				.append(GMColorTheme.RED, ".")
 				.build()
 			);
 
@@ -72,7 +72,10 @@ public class GMTreeCapitator extends GMEnchant {
 		Block block = e.getBlock();
 
 		if(_isEnchantActivating(player, mainHand)) {
-			if(TreeUtils.breakTree(block, player)) {
+
+			TreeUtils treeUtils = new TreeUtils();
+			
+			if(treeUtils.breakTree(block, player)) {
 				e.setCancelled(true);
 			}
 		}

@@ -12,7 +12,7 @@ import io.papermc.paper.registry.tag.TagKey;
 import io.papermc.paper.tag.TagEntry;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import me.mbiancini.garnetmatrix.constants.EnchantmentWeight;
+import me.mbiancini.garnetmatrix.constants.GMEnchantmentWeight;
 import me.mbiancini.garnetmatrix.constants.GarnetMatrixKeys;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
@@ -23,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ItemType;
 
 import java.util.Collections;
-import java.util.Set;
 
 @Getter
 @AllArgsConstructor
@@ -37,7 +36,7 @@ public abstract class GMEnchant implements PluginBootstrap, Listener {
 	private EquipmentSlotGroup activeSlots;
 	private int anvilCost;
 	private int maxLevel;
-	private EnchantmentWeight enchantmentWeight;
+	private GMEnchantmentWeight enchantmentWeight;
 	private boolean findInEnchantingTable;
 	private boolean findInVillagerTrade;
 
