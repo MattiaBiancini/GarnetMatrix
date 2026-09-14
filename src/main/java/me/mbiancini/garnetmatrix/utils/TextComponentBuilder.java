@@ -7,7 +7,7 @@ import net.kyori.adventure.text.format.TextColor;
 
 public class TextComponentBuilder {
 
-	private final TextComponent.Builder textComponent;
+	private TextComponent.Builder textComponent;
 
 	public TextComponentBuilder() {
 		this.textComponent = Component.text();
@@ -20,6 +20,10 @@ public class TextComponentBuilder {
 
 	public TextComponent build() {
 		return this.textComponent.style(Style.style().color(null).build()).build();
+	}
+
+	public void reset() {
+		this.textComponent = Component.text();
 	}
 
 }
