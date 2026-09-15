@@ -12,5 +12,6 @@ public class GMColorTheme {
 	public static final TextColor GREEN = TextColor.color(0x7BF1A8);
 	public static final TextColor RED = TextColor.color(0xDB5042);
 	public static final TextColor YELLOW = TextColor.color(0xFEE685);
+	public static final TextColor LIGHT_BLUE = TextColor.color(0x74D4FF);
 
 }

@@ -116,11 +116,11 @@ public class TreeUtils {
 	 * Breaks the entire tree that the given block belongs to, dropping items as if
 	 * broken naturally by the given player's held tool.
 	 *
-	 * @return true if a tree was found and broken, false otherwise
+	 * @return the number of log broken
 	 */
-	public boolean breakTree(Block block, Player player) {
+	public int breakTree(Block block, Player player) {
 		if (!isBlockPartOfTree(block)) {
-			return false;
+			return 0;
 		}
 
 		List<Block> treeBlocks = _getTreeBlocks(block);
@@ -129,7 +129,7 @@ public class TreeUtils {
 		for (Block treeBlock : treeBlocks) {
 			treeBlock.breakNaturally(tool);
 		}
-		return true;
+		return treeBlocks.size();
 	}
 
 	/**

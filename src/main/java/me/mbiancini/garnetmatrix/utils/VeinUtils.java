@@ -42,46 +42,48 @@ public class VeinUtils {
 		return veinableMaterials.contains(material);
 	}
 
-	public static boolean breakVein(Block block, Player player, int experience) {
+	public static int breakVein(Block block, Player player, int experience) {
 
-		if(isVeinable(block.getType())) {
-
-			try {
-				new BukkitRunnable() {
-
-					@Override
-					public void run() {
-
-						List<Block> blocks = getVein(block);
-						Location playerLocation = player.getLocation();
-						int experienceToDrop = experience;
-
-						if (blocks != null && !blocks.isEmpty()) {
-
-							experienceToDrop = experience * blocks.size();
-
-							List<ItemStack> loot = blocks.stream()
-								.flatMap(x -> x.getDrops(player.getInventory().getItemInMainHand()).stream())
-								.toList();
-
-							blocks.forEach(block -> block.setType(Material.AIR));
-							loot.forEach(x -> playerLocation.getWorld().dropItemNaturally(playerLocation, x));
-
-						}
-
-						ExperienceOrb orb = (ExperienceOrb) playerLocation.getWorld().spawnEntity(playerLocation, EntityType.EXPERIENCE_ORB);
-						orb.setExperience(experienceToDrop);
-					}
-
-				}.runTask(GarnetMatrixPlugin.INSTANCE);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			return true;
+		if (!isVeinable(block.getType())) {
+			return 0;
 		}
 
-		return false;
+		List<Block> blocks = getVein(block);
+		int blockBroken = (blocks != null) ? blocks.size() : 0;
+
+		try {
+			new BukkitRunnable() {
+
+				@Override
+				public void run() {
+
+					Location playerLocation = player.getLocation();
+					int experienceToDrop = experience;
+
+					if (blocks != null && !blocks.isEmpty()) {
+
+						experienceToDrop = experience * blocks.size();
+
+						List<ItemStack> loot = blocks.stream()
+							.flatMap(x -> x.getDrops(player.getInventory().getItemInMainHand()).stream())
+							.toList();
+
+						blocks.forEach(b -> b.setType(Material.AIR));
+						loot.forEach(x -> playerLocation.getWorld().dropItemNaturally(playerLocation, x));
+
+					}
+
+					ExperienceOrb orb = (ExperienceOrb) playerLocation.getWorld().spawnEntity(playerLocation, EntityType.EXPERIENCE_ORB);
+					orb.setExperience(experienceToDrop);
+				}
+
+			}.runTask(GarnetMatrixPlugin.INSTANCE);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return blockBroken;
 	}
 
 	public static List<Block> getVein(Block block) {

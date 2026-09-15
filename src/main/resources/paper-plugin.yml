@@ -1,5 +1,5 @@
 name: GarnetMatrix
-version: 1.0.0
+version: 1.1.0
 main: me.mbiancini.garnetmatrix.GarnetMatrixPlugin
 bootstrapper: me.mbiancini.garnetmatrix.GarnetMatrixBootstrap
 description: You entred in the Matrix created by Garnet, will you be able to survive?

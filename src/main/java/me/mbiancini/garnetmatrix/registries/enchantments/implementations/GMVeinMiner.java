@@ -8,6 +8,7 @@ import me.mbiancini.garnetmatrix.constants.GMEnchantmentWeight;
 import me.mbiancini.garnetmatrix.constants.GMColorTheme;
 import me.mbiancini.garnetmatrix.constants.GarnetMatrixKeys;
 import me.mbiancini.garnetmatrix.registries.enchantments.GMEnchant;
+import me.mbiancini.garnetmatrix.utils.EnchantDamagerUtils;
 import me.mbiancini.garnetmatrix.utils.GMLogger;
 import me.mbiancini.garnetmatrix.utils.TextComponentBuilder;
 import me.mbiancini.garnetmatrix.utils.VeinUtils;
@@ -71,7 +72,10 @@ public void onPlayerBreakLogEvent(BlockBreakEvent e) {
 
 	if(_isEnchantActivating(player, mainHand)) {
 		e.setCancelled(true);
-		VeinUtils.breakVein(block, player, e.getExpToDrop());
+		int blockBroken = VeinUtils.breakVein(block, player, e.getExpToDrop());
+		player.getInventory().setItemInMainHand(
+			EnchantDamagerUtils.damageItem(mainHand, player, blockBroken)
+		);
 	}
 
 }

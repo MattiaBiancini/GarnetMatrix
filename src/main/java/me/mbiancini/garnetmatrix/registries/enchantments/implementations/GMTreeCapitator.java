@@ -8,6 +8,7 @@ import me.mbiancini.garnetmatrix.constants.GMEnchantmentWeight;
 import me.mbiancini.garnetmatrix.constants.GMColorTheme;
 import me.mbiancini.garnetmatrix.constants.GarnetMatrixKeys;
 import me.mbiancini.garnetmatrix.registries.enchantments.GMEnchant;
+import me.mbiancini.garnetmatrix.utils.EnchantDamagerUtils;
 import me.mbiancini.garnetmatrix.utils.GMLogger;
 import me.mbiancini.garnetmatrix.utils.TextComponentBuilder;
 import me.mbiancini.garnetmatrix.utils.TreeUtils;
@@ -74,9 +75,13 @@ public class GMTreeCapitator extends GMEnchant {
 		if(_isEnchantActivating(player, mainHand)) {
 
 			TreeUtils treeUtils = new TreeUtils();
-			
-			if(treeUtils.breakTree(block, player)) {
+			int logBroken = treeUtils.breakTree(block, player);
+
+			if(logBroken > 0) {
 				e.setCancelled(true);
+				player.getInventory().setItemInMainHand(
+					EnchantDamagerUtils.damageItem(player.getInventory().getItemInMainHand(), player, logBroken)
+				);
 			}
 		}
 
