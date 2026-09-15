@@ -23,6 +23,7 @@ GarnetMatrix is a lightweight Minecraft plugin that adds two powerful, rare cust
 - 🔒 **Tool-restricted** — each enchant only applies to the correct tool type
 - ⛏️ **Block-restricted** — each enchant only triggers on the correct block type
 - ⚙️ Drop-in installation, no configuration required to get started
+- 💬 **Chat Notification System**: Notify player cited in chat
 
 ## Enchantments
 
@@ -52,8 +53,13 @@ Since both enchantments are intentionally rare, there is no guaranteed way to ge
 
 - **Enchanting Table**: Small random chance to appear when enchanting a valid pickaxe or axe.
 - **Librarian Villagers**: Small random chance to appear in their trade offers.
+- **Creative**: Search for Enchanted Book in creative tabs
 
 There is no `/enchant` command support by default, and the enchantments cannot be obtained via crafting or grinding — this is by design, to keep them special.
+
+## Chat System
+
+When you write a message to send in chat all the players cite, are pinged with a sound and the name are highlighted in chat.
 
 ## Compatibility
 
