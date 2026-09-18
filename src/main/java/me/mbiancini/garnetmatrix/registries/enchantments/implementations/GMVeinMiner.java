@@ -70,7 +70,7 @@ public void onPlayerBreakLogEvent(BlockBreakEvent e) {
 	ItemStack mainHand = e.getPlayer().getInventory().getItemInMainHand();
 	Block block = e.getBlock();
 
-	if(_isEnchantActivating(player, mainHand)) {
+	if(_isEnchantActivating(player, mainHand) && VeinUtils.isVeinable(block.getType())) {
 		e.setCancelled(true);
 		int blockBroken = VeinUtils.breakVein(block, player, e.getExpToDrop());
 		player.getInventory().setItemInMainHand(
